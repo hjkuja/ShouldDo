@@ -1,6 +1,6 @@
 # Todo app example
 
-This is a simple Todo app example demonstrating .NET minimal API and the Result pattern.
+This is a simple todo app example demonstrating .NET minimal APIs and the Result pattern.
 
 
 ## How to run
