@@ -15,12 +15,12 @@ public static class TodoEndpoints
         group.MapPost(string.Empty, CreateTodo).WithName(nameof(CreateTodo)).WithDescription("Creates a new to do item.");
     }
     
-    private static async Task<Results<Created<Guid>, BadRequest<string>>> CreateTodo(CreateTodoRequest request, ITodoService todoService)
+    private static async Task<IResult> CreateTodo(CreateTodoRequest request, ITodoService todoService)
     {
-        var todoResult= await todoService.CreateTodoAsync(request);
+        var todoResult = await todoService.CreateTodoAsync(request);
 
-        return todoResult.Match<Results<Created<Guid>, BadRequest<string>>>(
-            guid => TypedResults.Created(BasePath, guid), 
-            exception => TypedResults.BadRequest(exception.Message));
+        return todoResult.Match(
+            guid => TypedResults.Created(BasePath, guid),
+            exception => exception.ToProblemResult());
     }
 }
