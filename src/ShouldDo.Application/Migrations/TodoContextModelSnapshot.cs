@@ -30,17 +30,17 @@ namespace ShouldDo.Application.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoItems");
+                    b.ToTable("TodoItems", (string)null);
                 });
 #pragma warning restore 612, 618
         }

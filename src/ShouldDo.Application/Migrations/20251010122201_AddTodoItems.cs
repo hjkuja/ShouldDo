@@ -16,8 +16,8 @@ namespace ShouldDo.Application.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
+                    Title = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    Description = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {

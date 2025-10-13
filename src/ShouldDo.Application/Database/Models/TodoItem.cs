@@ -5,14 +5,17 @@ namespace ShouldDo.Application.Database.Models;
 
 public class TodoItem
 {
+    public const int MaxTitleLength = 15;
+    public const int MaxDescriptionLength = 30;
+
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     [Required]
-    [MaxLength(150)]
+    [MaxLength(MaxTitleLength)]
     public required string Title { get; set; }
     
-    [MaxLength(500)]
+    [MaxLength(MaxDescriptionLength)]
     public string Description { get; set; } = string.Empty;
 }

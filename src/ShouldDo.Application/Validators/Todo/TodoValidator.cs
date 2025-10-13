@@ -1,4 +1,5 @@
 ﻿using LanguageExt.Common;
+using ShouldDo.Application.Database.Models;
 using ShouldDo.Application.Validators.Interfaces;
 using ShouldDo.Contracts.Requests.Todo;
 
@@ -23,13 +24,15 @@ public class TodoValidator : IValidator<CreateTodoRequest>
         // These can be useful while handling the operation results.
 
         if (string.IsNullOrWhiteSpace(item.Title))
-        {
             errors.Add("Title is required.");
-        }
-        else if (item.Title.Length > 100)
-        {
-            errors.Add("Title cannot be longer than 100 characters.");
-        }
+
+        if (item.Title.Length > TodoItem.MaxTitleLength)
+            errors.Add($"Title cannot be longer than {TodoItem.MaxTitleLength} characters.");
+
+        
+        if (item.Description.Length > TodoItem.MaxDescriptionLength) 
+            errors.Add($"Description cannot be longer than {TodoItem.MaxDescriptionLength} characters.");
+        
         
         return Task.FromResult<Error[]>([.. errors]);
     }
